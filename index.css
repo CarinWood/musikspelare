@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgb(68, 68, 195), midnightblue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-list, .player {
+    width: 500px;
+    height: 83vh;
+    margin: 8px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: midnightblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.display {
+    width: 320px;
+    height: 260px;
+    border: 1px solid lightblue;
+    margin-top: 30px;
+    position: relative;
+}
+
+.cover-pic {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    object-fit:fill;
+}
