@@ -30,10 +30,9 @@ let playList = document.querySelector('.play-list')
 
 function setPlayList() {
     for (let i = 0; i < songList.length; i++) {
-        let title = document.createElement('p')
-        title.classList.add('title')
-        title.innerText = songList[i].title
-        playList.appendChild(title)
+        playList.children[i].querySelector('.title').innerText = songList[i].title
+        playList.children[i].querySelector('.band').innerText = songList[i].band
+      
     }
 }
 

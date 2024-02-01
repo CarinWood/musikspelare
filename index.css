@@ -11,6 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .play-list, .player {
@@ -44,13 +45,22 @@ body {
 
 .card {
     width: 100%;
-    height: 80px;
+    height: 100px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     border: 1px solid white;
     color: white;
-    padding-left: 20px;
+    padding-left: 35px;
+}
+
+.texts {
+    margin-left: 50px;
+}
+
+.title {
+    font-size: 20px;
+    margin-bottom: 8px;
 }
 
 .play-btn {
@@ -70,6 +80,3 @@ body {
     color: white;
 }
 
-.title {
-    color: white;
-}
