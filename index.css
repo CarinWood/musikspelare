@@ -27,11 +27,19 @@ body {
     align-items: center;
 }
 
+.play-color {
+    background-color: rgb(42, 42, 128);
+}
+
+.play-list {
+    justify-content: flex-end;
+}
+
 .display {
     width: 320px;
     height: 260px;
     border: 1px solid lightblue;
-    margin-top: 30px;
+    margin: 30px 0px;
     position: relative;
 }
 
@@ -49,7 +57,7 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.9);
     color: white;
     padding-left: 35px;
 }
@@ -79,4 +87,22 @@ body {
 .material-icons {
     color: white;
 }
+
+.current-sound {
+    margin: 20px;
+}
+
+.back, .forward, .shuffle {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 10px;
+
+}
+
+.back:active, .forward:active, .shuffle:active {
+    transform: translateY(3px);
+}
+
 
