@@ -58,6 +58,7 @@ display.appendChild(coverPic)
 let repeat = document.querySelector('.repeat')
 let repeatActive = false;
 let playList = document.querySelector('.play-list')
+let isPlaying = false
 playList.children[current].classList.add('play-color')
 
 function setPlayList() {
@@ -71,6 +72,7 @@ function setPlayList() {
 setPlayList()
 
 function playTrack(num) {
+    isPlaying = true
     mainPlay.classList.add('hidden')
     pauseBtn.classList.remove('hidden')
     playList.children[current].classList.remove('play-color')
@@ -145,16 +147,26 @@ function repeatList() {
   
 }
 
-function mainPlayClick() {
+ function mainPlayClick() {
     mainPlay.classList.add('hidden')
     pauseBtn.classList.remove('hidden')
-    if (currentSound.paused) {
-        currentSound.currentTime = currentSound.currentTime;
+    if (isPlaying) {
+        
+         currentSound.currentTime = currentSound.currentTime;
         currentSound.play();
-    } else {
-        playTrack(current);
     }
-}
+            else {
+                playTrack(current);
+
+            }
+     
+     
+     
+    
+} 
+
+
+
 
 function pauseClick() {
     mainPlay.classList.remove('hidden')
@@ -198,3 +210,4 @@ function formatTime(seconds) {
     const remainingSeconds = Math.floor(seconds % 60);
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 }
+
