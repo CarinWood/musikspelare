@@ -41,13 +41,16 @@ let coverPic = document.createElement('img')
 let forwardBtn = document.querySelector('.forward')
 let backBtn = document.querySelector('.back')
 let shuffle = document.querySelector('.shuffle')
+let currentSong = document.querySelector('.song')
+let currentBand = document.querySelector('.name')
 let current = 0
 coverPic.src = songList[1].img;
 coverPic.classList.add('cover-pic')
 let display = document.querySelector('.display')
 display.appendChild(coverPic)
 console.log(coverPic.src)
-
+let repeat = document.querySelector('.repeat')
+let repeatActive = false;
 let playList = document.querySelector('.play-list')
 
 function setPlayList() {
@@ -64,9 +67,22 @@ function playTrack(num) {
     playList.children[current].classList.remove('play-color')
     playList.children[num].classList.add('play-color')
     coverPic.src = songList[num].img
+    currentSong.innerText = songList[num].title
+    currentBand.innerText = songList[num].band
     currentSound.src = songList[num].audio
+    currentSound.addEventListener('ended', playNextAndStopAtEnd);
+
     currentSound.play()
     current = num
+}
+
+function playNextAndStopAtEnd() {
+    playList.children[current].classList.remove('play-color')
+    current++;
+    if(current > 6 ) {
+        playTrack(current)
+    }
+
 }
 
 function playNext() {
@@ -93,6 +109,17 @@ function shufflePlaylist() {
     setPlayList()
 }
 
+function repeatList() {
+    repeatActive = !repeatActive
+    
+    if(repeatActive) {
+        repeat.classList.add('active')
+    } else {
+        repeat.classList.remove('active')
+    }
+  
+}
+
 
 let buttonOne = document.querySelector('.one')
 buttonOne.addEventListener('click', () =>playTrack(0))
@@ -110,3 +137,4 @@ buttonSix.addEventListener('click', () => playTrack(5))
 forwardBtn.addEventListener('click', playNext)
 backBtn.addEventListener('click', playPrevious)
 shuffle.addEventListener('click', shufflePlaylist)
+repeat.addEventListener('click', repeatList)
