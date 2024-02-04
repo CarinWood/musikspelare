@@ -1,82 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <title>Musikspelare</title>
-</head>
-<body>
-    <div class="play-list">
-        <div class="card">
-            <button class="play-btn one"><i class="material-icons">play_arrow</i></button>
-            <div class="texts">
-                <p class="title">Here is title</p>
-                <p class="band">Band name</p>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="index.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <title>Musikspelare</title>
+    </head>
+    <body>
+        <div class="play-list">
+            <div class="card">
+                <button class="play-btn one"><i class="material-icons">play_arrow</i></button>
+                <div class="texts">
+                    <p class="title">Here is title</p>
+                    <p class="band">Band name</p>
+                </div>
+            </div>
+            <div class="card">
+                <button class="play-btn two"><i class="material-icons">play_arrow</i></button>
+                <div class="texts">
+                    <p class="title">Here is title</p>
+                    <p class="band">Band name</p>
+                </div>
+            </div>
+            <div class="card">
+                <button class="play-btn three"><i class="material-icons">play_arrow</i></button>
+                <div class="texts">
+                    <p class="title">Here is title</p>
+                    <p class="band">Band name</p>
+                </div>
+            </div>
+            <div class="card">
+                <button class="play-btn four"><i class="material-icons">play_arrow</i></button>
+                <div class="texts">
+                    <p class="title">Here is title</p>
+                    <p class="band">Band name</p>
+                </div>
+            </div>
+            <div class="card">
+                <button class="play-btn five"><i class="material-icons">play_arrow</i></button>
+                <div class="texts">
+                    <p class="title">Here is title</p>
+                    <p class="band">Band name</p>
+                </div>
+            </div>
+            <div class="card">
+                <button class="play-btn six"><i class="material-icons">play_arrow</i></button>
+                <div class="texts">
+                    <p class="title">Here is title</p>
+                    <p class="band">Band name</p>
+                </div>
             </div>
         </div>
-        <div class="card">
-            <button class="play-btn two"><i class="material-icons">play_arrow</i></button>
-            <div class="texts">
-                <p class="title">Here is title</p>
-                <p class="band">Band name</p>
-            </div>
-        </div>
-        <div class="card">
-            <button class="play-btn three"><i class="material-icons">play_arrow</i></button>
-            <div class="texts">
-                <p class="title">Here is title</p>
-                <p class="band">Band name</p>
-            </div>
-        </div>
-        <div class="card">
-            <button class="play-btn four"><i class="material-icons">play_arrow</i></button>
-            <div class="texts">
-                <p class="title">Here is title</p>
-                <p class="band">Band name</p>
-            </div>
-        </div>
-        <div class="card">
-            <button class="play-btn five"><i class="material-icons">play_arrow</i></button>
-            <div class="texts">
-                <p class="title">Here is title</p>
-                <p class="band">Band name</p>
-            </div>
-        </div>
-        <div class="card">
-            <button class="play-btn six"><i class="material-icons">play_arrow</i></button>
-            <div class="texts">
-                <p class="title">Here is title</p>
-                <p class="band">Band name</p>
-            </div>
-        </div>
-    </div>
-    <div class="player">
-        <div class="display"></div>
-        <h3 class="song"></h3>
-        <p class="name"></p>
-        <div>
-            <button class="back">
-                <i class="material-icons">fast_rewind</i>
+        <div class="player">
+            <div class="display"></div>
+            <h3 class="song">Boys, Girls, Toys & Words
+            </h3>
+            <p class="name">Modern Pitch</p>
+            <div class="controls">
+                <button class="back">
+                    <i class="material-icons">fast_rewind</i>
+                </button>
+                <button class="main-play">
+                    <i class="material-icons">play_arrow</i>
+                </button>
+                <button class="pause">
+                    <i class="material-icons">pause</i>
+                </button>
+                <button class="forward">
+                <i class="material-icons">fast_forward</i>
             </button>
-            <button class="forward">
-            <i class="material-icons">fast_forward</i>
-        </button>
+            </div>
+            <audio class="current-sound">
+                <source src="" type="audio/mpeg"></source>
+            </audio>
+
+            <input type="range" class="song-progress" min="0" value="0" step="1">
+            <div>
+            <span class="current-time">0:00</span> / <span class="duration">0:00</span> 
+            </div>       
+
+            <div class="repeat-shuffle-div">
+                <button class="repeat">
+                    <i class="material-icons">repeat</i>
+                </button>
+                <button class="shuffle">
+                    <i class="material-icons">shuffle</i>
+                </button>
+            </div>
         </div>
-        <audio controls class="current-sound">
-            <source src="" type="audio/mpeg"></source>
-        </audio>
-        <div>
-            <button class="repeat">
-                <i class="material-icons">repeat</i>
-            </button>
-            <button class="shuffle">
-                <i class="material-icons">shuffle</i>
-            </button>
-        </div>
-    </div>
-    
-</body>
-<script src="index.js"></script>
-</html>
+        
+    </body>
+    <script src="index.js"></script>
+    </html>

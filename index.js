@@ -36,7 +36,14 @@ let songList = [
         audio: '/assets/Say_Goodbye_-_VITNE.mp3'
     },    
 ]
+
+let mainPlay = document.querySelector('.main-play')
+let pauseBtn = document.querySelector('.pause')
+pauseBtn.classList.add('hidden')
 let currentSound = document.querySelector('.current-sound')
+let songProgress = document.querySelector('.song-progress');
+let currentTimeDisplay = document.querySelector('.current-time');
+let durationDisplay = document.querySelector('.duration');
 let coverPic = document.createElement('img')
 let forwardBtn = document.querySelector('.forward')
 let backBtn = document.querySelector('.back')
@@ -44,14 +51,14 @@ let shuffle = document.querySelector('.shuffle')
 let currentSong = document.querySelector('.song')
 let currentBand = document.querySelector('.name')
 let current = 0
-coverPic.src = songList[1].img;
+coverPic.src = songList[0].img;
 coverPic.classList.add('cover-pic')
 let display = document.querySelector('.display')
 display.appendChild(coverPic)
-console.log(coverPic.src)
 let repeat = document.querySelector('.repeat')
 let repeatActive = false;
 let playList = document.querySelector('.play-list')
+playList.children[current].classList.add('play-color')
 
 function setPlayList() {
     for (let i = 0; i < songList.length; i++) {
@@ -64,23 +71,35 @@ function setPlayList() {
 setPlayList()
 
 function playTrack(num) {
+    mainPlay.classList.add('hidden')
+    pauseBtn.classList.remove('hidden')
     playList.children[current].classList.remove('play-color')
     playList.children[num].classList.add('play-color')
     coverPic.src = songList[num].img
     currentSong.innerText = songList[num].title
     currentBand.innerText = songList[num].band
     currentSound.src = songList[num].audio
-    currentSound.addEventListener('ended', playNextAndStopAtEnd);
+    if (repeatActive) {
+        currentSound.addEventListener('ended', playMusicList);
+    }
+
 
     currentSound.play()
     current = num
 }
 
-function playNextAndStopAtEnd() {
+function playMusicList() {
     playList.children[current].classList.remove('play-color')
     current++;
-    if(current > 6 ) {
-        playTrack(current)
+    if (repeatActive) {
+        if (current === songList.length) {
+            current = 0;
+        }
+        playTrack(current);
+    } else {
+        if (current < songList.length) {
+            playTrack(current);
+        }
     }
 
 }
@@ -92,6 +111,8 @@ function playNext() {
         current = 0;
     }
     playTrack(current)
+    mainPlay.classList.add('hidden')
+    pauseBtn.classList.remove('hidden')
 }
 
 function playPrevious() {
@@ -102,11 +123,15 @@ function playPrevious() {
     }
 
     playTrack(current)
+    mainPlay.classList.add('hidden')
+    pauseBtn.classList.remove('hidden')
 }
 
 function shufflePlaylist() {
+    playList.children[current].classList.remove('play-color')
     songList.sort(() => Math.random() - 0.5);
     setPlayList()
+    playTrack(0)
 }
 
 function repeatList() {
@@ -118,6 +143,23 @@ function repeatList() {
         repeat.classList.remove('active')
     }
   
+}
+
+function mainPlayClick() {
+    mainPlay.classList.add('hidden')
+    pauseBtn.classList.remove('hidden')
+    if (currentSound.paused) {
+        currentSound.currentTime = currentSound.currentTime;
+        currentSound.play();
+    } else {
+        playTrack(current);
+    }
+}
+
+function pauseClick() {
+    mainPlay.classList.remove('hidden')
+    pauseBtn.classList.add('hidden')
+    currentSound.pause()
 }
 
 
@@ -138,3 +180,21 @@ forwardBtn.addEventListener('click', playNext)
 backBtn.addEventListener('click', playPrevious)
 shuffle.addEventListener('click', shufflePlaylist)
 repeat.addEventListener('click', repeatList)
+mainPlay.addEventListener('click', mainPlayClick)
+pauseBtn.addEventListener('click', pauseClick)
+currentSound.addEventListener('loadedmetadata', function () {
+    songProgress.max = currentSound.duration;
+    durationDisplay.textContent = formatTime(currentSound.duration);
+});
+currentSound.addEventListener('timeupdate', function () {
+    songProgress.value = currentSound.currentTime;
+    currentTimeDisplay.textContent = formatTime(currentSound.currentTime);
+});
+songProgress.addEventListener('input', function () {
+    currentSound.currentTime = songProgress.value;
+});
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+}
